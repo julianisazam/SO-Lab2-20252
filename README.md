@@ -1,38 +1,20 @@
-# Práctica 2 de laboratorio - API de Procesos #
 
-## Instrucciones ##
-Antes de comenzar a trabajar en esta práctica se recomienda que lleve a cabo los siguientes pasos:
-1. Haga un fork de este repositorio.
-2. La persona que haga el fork agregue como colaborador a los compañeros de trabajo.
-3. Cada uno de los integrantes del equipo puede hacer una copia local del laboratorio con el fin de colaborar en su desarrollo.
-4. No olvide ir actualizando la práctica del laboratorio a medida que vaya avanzando en esta. Para el caso, vaya llevando a cabo los test proporsionados (tal y como se explicó en el laboratorio). Estos test serán el indicativo de cómo va su trabajo.
+# Informe Laboratorio #1
+
+##                  Integrantes
+
+- [Julian Isaza Marin](https://github.com/julianisazam)
+- [Sebastian Pelaez Acevedo](https://github.com/SPelaez122)
+- [Simon Sanchez Sepulveda](https://github.com/Simonsanchezs)
 
 
-## Componentes del laboratorio ##
+## Forma de trabajo
+Para este laboratorio notamos que el trabajo era mucho más extenso que el anterior por lo que tomamos la decisión de repartirnos el trabajo con el compromiso de reunirnos cada cierto periodo de tiempo para socializar el trabajo hecho por cada integrante y consolidarlo en conjunto en el repositorio, esto con el fin de que los demás integrantes del grupo tuvieran conocimiento de toda la estructura y funcionamiento del proyecto. Esta metodología nos llevó a un proceso lento por las reuniones acordadas pero consideramos que fue la mejor forma de hacerlo. 
 
-El siguiente laboratorio esta compuesto por dos directorios principales los cuales contienen:
-1. **Ejercicios de refuerzo**: En este directorio hay varios ejercicios sencillos cuyo objetivo es reforzar los conceptos teóricos y prácticos relacionados con el manejo procesos ([link](./ejercicios_refuerzo)).
-2. **Enunciado**: Contiene el enunciado y las instrucciones de la práctica de laboratorio ([link](./enunciado)).
-   
-## Actividad a realizar ## 
-Para el siguiente laboratorio se deben realizar los siguientes ejercicios:
-1. Del directorio de [ejercicios de refuerzo](./ejercicios_refuerzo) realizar solo el **ejercicio 7** de la sección de **problemas de programación**.
-2. Realizar el **shell de unix** propuesto en la carpeta [enunciado](./enunciado) empleando los diferentes test que se brindan para tal fin.
+ ## Primer commit
+ Esta Versión la tomamos como introducción para planificar la estructura o camino para el desarrollo del código, en este primer commit se implementa la estructura base del shell wish, incluyendo la lógica para operar en modo interactivo (con un prompt  `wish> `) y modo batch (leyendo comandos desde un archivo). El programa valida el número de argumentos recibidos, abre el archivo de entrada si se proporciona, y utiliza un bucle principal que lee líneas de comandos mediante  `getline() `, manejando adecuadamente condiciones como el fin de archivo o errores de lectura. Además, libera la memoria dinámica asignada para cada línea y garantiza el cierre correcto de archivos abiertos. Con esta base, el shell ya puede recibir y procesar comandos de entrada, sentando las bases para integrar posteriormente funcionalidades como la ejecución de procesos, redirección de salida, manejo de errores y comandos internos Además, hicimos la identificación del funcionmiento del shell y optamos por realizar dos tipos de vectores que serán explicadas en las próximas versiones
+ 
+ ## Segundo commit
+Este commit introduce la implementación de una estructura dinámica de datos llamada Vector. Su objetivo es manejar colecciones de cadenas `char*` de manera flexible, permitiendo agregar, acceder, buscar y eliminar elementos sin preocuparse por el tamaño fijo de un arreglo tradicional. El archivo `vector.h` define la estructura y sus operaciones básicas el cual contiene tres campos: `data`, un puntero doble a char donde se almacenan las cadenas. `capacity`, que indica la capacidad actual del arreglo. `size`, que indica cuántos elementos están realmente ocupados. También declara las funciones para crear, modificar, buscar y destruir el vector. El archivo `vector.c` implementa estas funciones: `create_vector()` inicializa un nuevo vector con una capacidad inicial de 8 elementos. `push_back()` agrega un nuevo elemento al final; si el vector está lleno, duplica automáticamente la capacidad mediante realocación de memoria, copiando los elementos existentes. `pop_back()` elimina el último elemento simplemente reduciendo el tamaño lógico. `get()` devuelve el elemento en una posición dada, validando los límites. `get_size()` retorna el número de elementos actuales. `search_key()` busca una cadena específica y devuelve su índice o -1 si no la encuentra. `destroy()` libera la memoria asignada para el vector. 
 
-## Material a la mano ##
-
-Adjunto con el presente laboratorio hay dos documentos de la UJI (Universitat Jaume I) muy buenos con los conceptos y con ejemplos que necesitan para el desarrollo la práctica. Estos documentos son:
-1. [Introducción a la programación con C](./s29.pdf)
-2. [100 ejercicios resueltos de Sistemas Operativos](./s30.pdf)
-
-## Importante comprender ##
-
-Para poder realizar la práctica es necesario comprender cabalmente los siguientes conceptos:
-1. API de procesos (**Su comprensión es fundamental ya que constituye el corazón del laboratorio**. A continuación se muestra el [link con teoria y ejemplos](https://github.com/dannymrock/UdeA-SO-Lab/tree/master/lab1)). 
-2. Manejo de argumentos por línea de comandos ([link con ejemplos](https://github.com/dannymrock/SO-Lab1-20201/tree/master/ejemplos/ejemplos_argc_argv)).
-3. Manejo de archivos en C ([link de la teoria](https://github.com/dannymrock/UdeA-SO-Lab/tree/master/lab0/lab0b/parte6))
-4. Manejo de la consola de linux (Es de utilidad conocer la filosofía de la consola de la línea de comandos para hacerse una idea de la funcionalidad básica que tendrá la consola a implementar, ya que esta última es una versión reducida de la primera. [Link de la teoria](https://github.com/dannymrock/UdeA-SO-Lab/tree/master/lab0/lab0a/consola_linux)).
-   
-Si no maneja estos conceptos; sobre el primero, por favor estúdielos con detenimiento, de la comprensión de estos depende el desarrollo de la práctica. También, revise la teoría más simple en caso de no creer tener la suficiente familiaridad con el lenguaje C. Es necesario la comprensión de los conceptos más básicos en C para poder manejar archivos, implementación de funciones, manejo de punteros y arreglos.
-
-Tenga además en cuenta que se agregan bastantes ejemplos con el fin de que los analice y comprenda. Si tiene dificultades para entenderlos pregunte sin pena en el foro del curso y vea los videos que allí se compartieron. Recuerden, No hay pregunta boba, bobo es el que no pregunta.
+Además, en este commit también se agregó en la función main de nuestro proyecto. Se recorre la lista de argumentos recibidos por línea de comandos para intentar abrir cada archivo de entrada, verificando posibles errores mediante la función `showError()`. Si no se especifica ningún archivo, el programa entra en un bucle interactivo que muestra el prompt "wish> " y espera que el usuario introduzca comandos desde la consola. Cada línea ingresada se lee dinámicamente con getline(), lo que permite manejar entradas de cualquier longitud, y se libera la memoria después de su uso. Esta estructura prepara el entorno para que, en futuras versiones, las líneas leídas sean tokenizadas, interpretadas y ejecutadas como comandos del shell, ya sea en modo interactivo o mediante archivos de entrada.
