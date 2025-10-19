@@ -1,0 +1,9 @@
+ls
+ls -l
+cd /temp
+pw
+path/bin
+echo "con path reducido"
+ls -l /noexiste > salida.txt
+sleep 1 & echo "Termino antes" & pwd
+exit
