@@ -1,6 +1,8 @@
 
 # Informe Laboratorio #1
 
+- [Link Video de la sustentación](https://drive.google.com/file/d/1fMiLzOdLwk_jGXEKnSGCPYYydM97kEWq/view?usp=sharing)
+
 ##                  Integrantes
 
 - [Julian Isaza Marin](https://github.com/julianisazam)
